@@ -9,6 +9,7 @@ namespace PoS_InventoryFilterSlim
         {
             Console.WindowHeight = 80;
             new MaxThroughput().RunTest();
+
         }
     }
 }
