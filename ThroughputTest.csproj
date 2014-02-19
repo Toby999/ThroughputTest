@@ -105,9 +105,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MaxThroughput\Config.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="MaxThroughput\Test0_intarray.cs" />
     <Compile Include="MaxThroughput\MaxThroughput.cs" />
+    <Compile Include="MaxThroughput\testingGit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
