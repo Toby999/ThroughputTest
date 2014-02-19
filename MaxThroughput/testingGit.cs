@@ -8,5 +8,6 @@ namespace PoS_InventoryFilterSlim.MaxThroughput
 {
     class testingGit
     {
+        private int test;
     }
 }
