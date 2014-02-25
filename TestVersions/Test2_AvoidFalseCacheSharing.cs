@@ -13,7 +13,6 @@ namespace PoS_InventoryFilterSlim.SimpleTest.MaxThroughput
             _longArray = new long[Config.NbrOfCores][];
             Console.WindowWidth = 100;
 
-
             for (int threadId = 0; threadId < Config.NbrOfCores; threadId++)
             {
                 _longArray[threadId] = new long[NmbrOfRequests];
@@ -50,9 +49,11 @@ namespace PoS_InventoryFilterSlim.SimpleTest.MaxThroughput
     }
 }
 
-/*result
-Step   10: Throughput:   461,7 MReq/s and       27,5 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3119 msec, Total Requests:   1 440 000 120
- 
+/*result (3 runs)
+Step   10: Throughput:   464,7 MReq/s and       27,7 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3099 msec, Total Requests:   1 440 000 120
+Step   10: Throughput:   463,6 MReq/s and       27,6 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3106 msec, Total Requests:   1 440 000 120
+Step   10: Throughput:   465,1 MReq/s and       27,7 GB/s (64),   Timetaken/request:      2,1 ns/req, Total TimeTaken:  3096 msec, Total Requests:   1 440 000 120
+
 Nope: there seem to be no problem with false cache sharing. Unless the effect of the actual addition out weighs the effect of the false cache sharing...
  * 
  */

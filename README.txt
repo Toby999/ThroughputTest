@@ -25,5 +25,11 @@ the field would be invalidated each loop iteration and cause a false sharing cac
 
 Result: No improved throughput.
 
---- Test3 - Remove .NET parallel construct -------------------------------------------
+--- Test3 - Remove .NET Framework parallel construct -------------------------------------------
+the Parallel.For construct was replaced with "manual starting and stopping thread. 
+Also, timer was improved to start at first thread and stop at last thread executing in order to remove any Thread creation additions to time.
+
+Result: As actually expected, the speedup was very little.
+
+
 

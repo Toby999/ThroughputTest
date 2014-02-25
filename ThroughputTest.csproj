@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestVersions\BaseTest.cs" />
+    <Compile Include="TestVersions\Test3_Parallel.ForRemoved.cs" />
     <Compile Include="TestVersions\Test2_AvoidFalseCacheSharing.cs" />
     <Compile Include="TestVersions\Test1_BetterUsageOfTestData.cs" />
     <Compile Include="TestVersions\Test0_original.cs" />
