@@ -43,10 +43,10 @@ namespace PoS_InventoryFilterSlim.SimpleTest.MaxThroughput
         {
             long sum = 0;
             var nbrOfrequests = NmbrOfRequests;
-
-            StartWallClockIfFirst();
             var threadId = Convert.ToInt32(Thread.CurrentThread.Name);
             var intArrayPerThread = _longArray[threadId];
+
+            StartWallClockIfFirst();
             for (int redo = 0; redo < Config.NbrOfRedos; redo++)
             {
                 for (long i = redo; i < nbrOfrequests; i += Config.Step)
@@ -54,8 +54,8 @@ namespace PoS_InventoryFilterSlim.SimpleTest.MaxThroughput
                     sum = intArrayPerThread[i] + 1;        
                 }
             }
-
             StopWallClockIfLast();
+
             lock (_lockSum) _totalSum += sum;
         }
 
