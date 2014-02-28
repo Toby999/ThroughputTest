@@ -106,8 +106,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestVersions\BaseTest.cs" />
-    <Compile Include="TestVersions\Test3_Parallel.ForRemoved.cs" />
-    <Compile Include="TestVersions\Test2_AvoidFalseCacheSharing.cs" />
+    <Compile Include="TestVersions\Misc.cs" />
+    <Compile Include="TestVersions\Test2 - speedup comparisons\Test6_SpinWaitStart.cs" />
+    <Compile Include="TestVersions\Test2 - speedup comparisons\Test5_Unchecked.cs" />
+    <Compile Include="TestVersions\Test2 - speedup comparisons\Test4_UnfoldingLoop.cs" />
+    <Compile Include="TestVersions\Test2 - speedup comparisons\Test3_Parallel.ForRemoved.cs" />
+    <Compile Include="TestVersions\Test2 - speedup comparisons\Test2_AvoidFalseCacheSharing.cs" />
     <Compile Include="TestVersions\Test1_BetterUsageOfTestData.cs" />
     <Compile Include="TestVersions\Test0_original.cs" />
     <Compile Include="Engine.cs" />

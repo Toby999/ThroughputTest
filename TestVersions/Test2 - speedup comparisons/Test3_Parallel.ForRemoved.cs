@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
+using PoS_InventoryFilterSlim.TestVersions;
 
+/*Remaining TODO for this version: Pin each thread to a core.
+ * 
+ * 
+ */ 
 namespace PoS_InventoryFilterSlim.SimpleTest.MaxThroughput
 {
     public class Test_3: Test_2
@@ -46,6 +51,8 @@ namespace PoS_InventoryFilterSlim.SimpleTest.MaxThroughput
             var threadId = Convert.ToInt32(Thread.CurrentThread.Name);
             var intArrayPerThread = _longArray[threadId];
 
+            Misc.SetThreadProcessorAffinity(threadId);
+
             StartWallClockIfFirst();
             for (int redo = 0; redo < Config.NbrOfRedos; redo++)
             {
@@ -84,14 +91,19 @@ namespace PoS_InventoryFilterSlim.SimpleTest.MaxThroughput
                 }
             }
         }
+      
     }
+
+
 }
 
 /*result (3 runs)
-Step   10: Throughput:   464,7 MReq/s and       27,7 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3099 msec, Total Requests:   1 440 000 120
-Step   10: Throughput:   463,6 MReq/s and       27,6 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3106 msec, Total Requests:   1 440 000 120
-Step   10: Throughput:   465,1 MReq/s and       27,7 GB/s (64),   Timetaken/request:      2,1 ns/req, Total TimeTaken:  3096 msec, Total Requests:   1 440 000 120
- 
+Step   10: Throughput:   463,8 MReq/s and       27,6 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3105 msec, Total Requests:   1 440 000 120
+Step   10: Throughput:   462,1 MReq/s and       27,5 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3116 msec, Total Requests:   1 440 000 120
+Step   10: Throughput:   462,9 MReq/s and       27,6 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3111 msec, Total Requests:   1 440 000 120
+
+ * 
+ * 
 Nope: there seem to be no problem with false cache sharing. Unless the effect of the actual addition out weighs the effect of the false cache sharing...
  * 
  */

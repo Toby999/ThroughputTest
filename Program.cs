@@ -9,7 +9,7 @@ namespace PoS_InventoryFilterSlim
         {
            Console.WindowHeight = 80;
 
-           var test = new Test_3();
+           var test = new Test_6();
 
            new TestEngine().RunTest(test);
         }
@@ -19,7 +19,7 @@ namespace PoS_InventoryFilterSlim
     {
         public const int Step = 10;
         public const int NbrOfRedos = 10;
-        public const long NmbrOfRequests = (long)12e7;
+        public const long NmbrOfRequests = (long)1e7 * NbrOfCores;
 
         public const int NbrOfCores = 12;
 

@@ -18,13 +18,14 @@ namespace PoS_InventoryFilterSlim.SimpleTest.MaxThroughput
         {
             _longArray = new long[Config.NbrOfCores][];
             Console.WindowWidth = 100;
+
             for (int threadId = 0; threadId < Config.NbrOfCores; threadId++)
             {
-                _longArray[threadId] = new long[NmbrOfRequests];
-                for (int i = 0; i < NmbrOfRequests; i++)
+                _longArray[threadId] = new long[NmbrOfRequests + 1000000];
+                for (int i = 0; i < NmbrOfRequests + 1000000; i++)
                 {
-                    _longArray[threadId][i] = i;
-                    if (i%(int) 1e7 == 0) Console.Write(".");
+                    _longArray[threadId][i] = i % 10;               //DIFF: changed so that the value is between 0 and 9 instead.
+                    if (i % (int)1e7 == 0) Console.Write(".");
                 }
             }
 
@@ -42,7 +43,7 @@ Parallel.For(0, Config.NbrOfCores, threadId =>
         var intArrayPerThread = _longArray[threadId];
         for (int redo = 0; redo < Config.NbrOfRedos; redo++)
             for (long i = redo; i < nbrOfrequests; i += Config.Step) 
-                _result = intArrayPerThread[i] + 1;
+                _result &= intArrayPerThread[i];
     });
 timer.Stop();
 
@@ -52,12 +53,9 @@ timer.Stop();
 }
 
 /*result
-Step    1: Throughput:  4519,8 MReq/s and      269,4 GB/s (64),   Timetaken/request:      0,2 ns/req, Total TimeTaken:  3186 msec, Total Requests:  14 400 001 200, Redo=10
-Step   10: Throughput:   463,0 MReq/s and       27,6 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3110 msec, Total Requests:   1 440 000 120, Redo=10
-Step  100: Throughput:   432,4 MReq/s and       25,8 GB/s (64),   Timetaken/request:      2,3 ns/req, Total TimeTaken:   333 msec, Total Requests:     144 000 000, Redo=10
-Step  100: Throughput:   438,1 MReq/s and       26,1 GB/s (64),   Timetaken/request:      2,3 ns/req, Total TimeTaken:  3287 msec, Total Requests:   1 440 001 200, Redo=100
-Step 1000: Throughput:   194,6 MReq/s and       11,6 GB/s (64),   Timetaken/request:      5,1 ns/req, Total TimeTaken:    74 msec, Total Requests:      14 400 000, Redo=10
-Step 1000: Throughput:   228,5 MReq/s and       13,6 GB/s (64),   Timetaken/request:      4,4 ns/req, Total TimeTaken:  6303 msec, Total Requests:   1 440 012 000, Redo=1000
+Step   10: Throughput:   452,4 MReq/s and         27 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3183 msec, Total Requests:   1 440 000 120
+Step   10: Throughput:   463,2 MReq/s and       27,6 GB/s (64),   Timetaken/request:      2,2 ns/req, Total TimeTaken:  3109 msec, Total Requests:   1 440 000 120
  
 
- */
+
+Step    1: Throughput:  1211,1 MReq/s and       72,2 GB/s (64),   Timetaken/request:      0,8 ns/req, Total TimeTaken:  1189 msec, Total Requests:   1 440 000 012 */
